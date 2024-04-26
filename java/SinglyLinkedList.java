@@ -19,10 +19,31 @@ public class SinglyLinkedList {
             this.next = null;
         }
     }
+
+    public void printSinglyLinkedList() {
+        
+        ListNode current = head;
+
+        while (current != null) {
+            System.out.println(current.data);
+            current = current.next;
+        }
+        
+    }
     
     public static void main(String args[]){
         // creating a list
+        SinglyLinkedList sll = new SinglyLinkedList();
+        sll.head = new ListNode(10);
+        ListNode second = new ListNode(1);
+        ListNode third = new ListNode(7);
+        ListNode fourth = new ListNode(5);
 
-        
+        // connecting the list
+        sll.head.next = second; // head's next will point to second
+        second.next = third;
+        third.next = fourth;
+
+        sll.printSinglyLinkedList();
     }
 }
