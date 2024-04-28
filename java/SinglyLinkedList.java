@@ -163,6 +163,17 @@ public class SinglyLinkedList {
         return reversedList;
     }
 
+    public int findValueAtPosition(int position) {
+        ListNode current = head;
+        
+        int count = 1;
+        while ( count < position ) {
+            current = current.next;
+            count++;
+        }
+        return current.data;
+    }
+
     public static void main(String args[]){
         // creating a list
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -176,9 +187,8 @@ public class SinglyLinkedList {
         sll.insertAtBegining(7);
         sll.insertAtPosition(3, 12);
 
-        sll.printSinglyLinkedList(); // before
-        SinglyLinkedList reversed = sll.reverse(); // returns a reversed list
-        reversed.printSinglyLinkedList();// after
+        sll.printSinglyLinkedList();
+        System.out.println(sll.findValueAtPosition(2));
 
     }
 }
