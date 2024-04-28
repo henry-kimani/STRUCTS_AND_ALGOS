@@ -150,6 +150,19 @@ public class SinglyLinkedList {
         return false;
     }
 
+    public SinglyLinkedList reverse() {
+        // returns a reversed list
+        SinglyLinkedList reversedList = new SinglyLinkedList();
+
+        ListNode current = head;
+        while( current != null) {
+            // append to reversedList
+            reversedList.insertAtBegining(current.data);
+            current = current.next;
+        }
+        return reversedList;
+    }
+
     public static void main(String args[]){
         // creating a list
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -163,8 +176,9 @@ public class SinglyLinkedList {
         sll.insertAtBegining(7);
         sll.insertAtPosition(3, 12);
 
-        sll.printSinglyLinkedList();
-        System.out.println(sll.search(4)); // true
-        System.out.println(sll.search(100)); // false
+        sll.printSinglyLinkedList(); // before
+        SinglyLinkedList reversed = sll.reverse(); // returns a reversed list
+        reversed.printSinglyLinkedList();// after
+
     }
 }
