@@ -1,4 +1,4 @@
-# DATASTRUCTS AND ALGORITHMS 
+# DATASTRUCTURES AND ALGORITHMS 
 
 This repository keeps files of data structs and algothrims.
 
@@ -7,4 +7,8 @@ will have the files of what i have learnt.
 
 Its currently divided:
  - Some are language specific such as java, javascript
+ - Some are not
+
+ But the folders have readme files which should help understand
+further
 
