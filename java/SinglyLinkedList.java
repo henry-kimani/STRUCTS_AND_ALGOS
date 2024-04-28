@@ -41,22 +41,63 @@ public class SinglyLinkedList {
         }
         return length;
     }
+
+    public void insertAtBegining(int value) {
+        ListNode newNode = new ListNode(value);
+
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void insertAtEnd(int value) {
+        ListNode newNode = new ListNode(value);
+
+        if ( head == null ) {
+            head = newNode;
+        }
+
+        ListNode current = head; // act the cursor to traverse the list
+
+        // traverse till we reach the end
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode; // the last node to point to new node
+    }
+    
+    public void insertAtPosition(int position, int value) {
+        ListNode newNode = new ListNode(value);
+        if (position == 1) {
+            newNode.next = head;
+            head = newNode;
+        }
+
+        ListNode previous = head; 
+        
+        int i = 1;
+        while (i < position - 1 ) {
+            previous = previous.next;
+            i++;
+        }
+        ListNode current = previous.next;
+        previous.next = newNode;
+        newNode.next = current;
+    }
     
     public static void main(String args[]){
         // creating a list
         SinglyLinkedList sll = new SinglyLinkedList();
-        sll.head = new ListNode(10);
-        ListNode second = new ListNode(1);
-        ListNode third = new ListNode(7);
-        ListNode fourth = new ListNode(5);
+        sll.head = new ListNode(6); // required
 
-        // connecting the list
-        sll.head.next = second; // head's next will point to second
-        second.next = third;
-        third.next = fourth;
-
+        sll.insertAtEnd(8);
+        sll.insertAtEnd(4);
+        sll.insertAtEnd(3);
+        sll.insertAtBegining(4);
+        sll.insertAtBegining(9);
+        sll.insertAtBegining(7);
+        
         sll.printSinglyLinkedList();
-        int length = sll.lengthOfSinglyLinkedList();
-        System.out.println(length);
+        sll.insertAtPosition(3, 12);
+        sll.printSinglyLinkedList();
     }
 }
