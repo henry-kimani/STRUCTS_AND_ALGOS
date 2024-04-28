@@ -83,7 +83,61 @@ public class SinglyLinkedList {
         previous.next = newNode;
         newNode.next = current;
     }
-    
+
+    public int deleteAtBegining() {
+        if (head == null) {
+            System.out.println("Deletion while head is null");
+            return 1;
+        }
+
+        ListNode hold = head.next;
+        head = hold;
+        return 0;
+    }
+
+    public int deleteAtEnd() {
+        if (head == null) {
+            System.out.println("Deletion while head is null");
+            return 1;
+        }
+        ListNode current = head;
+
+        while(current.next.next != null) {
+            current = current.next;
+        }
+        current.next = null;
+        return 0;
+    }
+
+    public int deleteAtPosition(int position) {
+        // check if head is null
+        if (head == null) {
+            System.out.println("Deletion while head is null");
+            return 1;
+        }
+
+        if (position == 1) {
+            ListNode hold = head.next; 
+            head = hold;
+        }
+
+        ListNode previous = head;
+        int count = 1;
+
+        while (count < position - 1) {
+            // traverse till previous is behind by one value 
+            previous = previous.next;
+            count++;
+        }
+
+        ListNode current = previous.next;
+        ListNode hold = current.next; // hold the rest of the list while we delete
+        previous.next = null; // breaking with the next node
+        current.next = null; // breaking with the node to delete with the rest of the list
+        previous.next = hold; // connecting with the rest of the list
+        return 0;
+    }   
+
     public static void main(String args[]){
         // creating a list
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -95,9 +149,10 @@ public class SinglyLinkedList {
         sll.insertAtBegining(4);
         sll.insertAtBegining(9);
         sll.insertAtBegining(7);
-        
-        sll.printSinglyLinkedList();
         sll.insertAtPosition(3, 12);
+
+        sll.printSinglyLinkedList();
+        sll.deleteAtPosition(3);
         sll.printSinglyLinkedList();
     }
 }
