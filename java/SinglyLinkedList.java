@@ -138,6 +138,18 @@ public class SinglyLinkedList {
         return 0;
     }   
 
+    public boolean search(int searchKey) {
+        ListNode current = head; 
+        
+        while (current.next != null) {
+            if (current.data == searchKey) {
+                return true;
+            } 
+            current = current.next;
+        }
+        return false;
+    }
+
     public static void main(String args[]){
         // creating a list
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -152,7 +164,7 @@ public class SinglyLinkedList {
         sll.insertAtPosition(3, 12);
 
         sll.printSinglyLinkedList();
-        sll.deleteAtPosition(3);
-        sll.printSinglyLinkedList();
+        System.out.println(sll.search(4)); // true
+        System.out.println(sll.search(100)); // false
     }
 }
