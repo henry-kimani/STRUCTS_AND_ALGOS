@@ -28,7 +28,17 @@ public class SinglyLinkedList {
             System.out.println(current.data);
             current = current.next;
         }
-        
+    }
+
+    public int lengthOfSinglyLinkedList() {
+        ListNode current = head; // used as the cursor to iterate the list
+
+        int length = 0; // keep track of the length
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
+        return length;
     }
     
     public static void main(String args[]){
@@ -45,5 +55,7 @@ public class SinglyLinkedList {
         third.next = fourth;
 
         sll.printSinglyLinkedList();
+        int length = sll.lengthOfSinglyLinkedList();
+        System.out.println(length);
     }
 }
