@@ -20,7 +20,7 @@ public class SinglyLinkedList {
         }
     }
 
-    public void printSinglyLinkedList() {
+    public void print() {
         
         ListNode current = head;
 
@@ -31,7 +31,7 @@ public class SinglyLinkedList {
         System.out.println("null");
     }
 
-    public int lengthOfSinglyLinkedList() {
+    public int length() {
         ListNode current = head; // used as the cursor to iterate the list
 
         int length = 0; // keep track of the length
@@ -42,14 +42,16 @@ public class SinglyLinkedList {
         return length;
     }
 
-    public void insertAtBegining(int value) {
+    // insert a newNode in the begining of the list
+    public void unshift(int value) {
         ListNode newNode = new ListNode(value);
 
         newNode.next = head;
         head = newNode;
     }
 
-    public void insertAtEnd(int value) {
+    // add a newNode at the end of the list
+    public void append(int value) {
         ListNode newNode = new ListNode(value);
 
         if ( head == null ) {
@@ -65,7 +67,8 @@ public class SinglyLinkedList {
         current.next = newNode; // the last node to point to new node
     }
     
-    public void insertAtPosition(int position, int value) {
+    // add a newNode at a specified position
+    public void insert(int position, int value) {
         ListNode newNode = new ListNode(value);
         if (position == 1) {
             newNode.next = head;
@@ -84,7 +87,7 @@ public class SinglyLinkedList {
         newNode.next = current;
     }
 
-    public int deleteAtBegining() {
+    public int deleteFirst() {
         if (head == null) {
             System.out.println("Deletion while head is null");
             return 1;
@@ -95,7 +98,7 @@ public class SinglyLinkedList {
         return 0;
     }
 
-    public int deleteAtEnd() {
+    public int deleteLast() {
         if (head == null) {
             System.out.println("Deletion while head is null");
             return 1;
@@ -109,7 +112,8 @@ public class SinglyLinkedList {
         return 0;
     }
 
-    public int deleteAtPosition(int position) {
+    // remove a node from a specified position
+    public int delete(int position) {
         // check if head is null
         if (head == null) {
             System.out.println("Deletion while head is null");
@@ -138,7 +142,7 @@ public class SinglyLinkedList {
         return 0;
     }   
 
-    public boolean search(int searchKey) {
+    public boolean isExists(int searchKey) {
         ListNode current = head; 
         
         while (current.next != null) {
@@ -150,14 +154,14 @@ public class SinglyLinkedList {
         return false;
     }
 
-    public SinglyLinkedList reverse() {
+    public SinglyLinkedList reversed() {
         // returns a reversed list
         SinglyLinkedList reversedList = new SinglyLinkedList();
 
         ListNode current = head;
         while( current != null) {
             // append to reversedList
-            reversedList.insertAtBegining(current.data);
+            reversedList.unshift(current.data);// add the node to the begining
             current = current.next;
         }
         return reversedList;
@@ -179,16 +183,14 @@ public class SinglyLinkedList {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(6); // required
 
-        sll.insertAtEnd(8);
-        sll.insertAtEnd(4);
-        sll.insertAtEnd(3);
-        sll.insertAtBegining(4);
-        sll.insertAtBegining(9);
-        sll.insertAtBegining(7);
-        sll.insertAtPosition(3, 12);
+        sll.append(8);
+        sll.append(4);
+        sll.append(3);
+        sll.unshift(4);
+        sll.unshift(9);
+        sll.unshift(7);
+        sll.insert(3, 12);
 
-        sll.printSinglyLinkedList();
-        System.out.println(sll.findValueAtPosition(2));
-
+        sll.print();
     }
 }
