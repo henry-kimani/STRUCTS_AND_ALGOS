@@ -178,6 +178,58 @@ public class SinglyLinkedList {
         return current.data;
     }
 
+    // Floyd's loop detection algorithm
+    public ListNode detectLoop() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        // fastPtr -> 2 steps : slowPtr -> 1 step
+        while(fastPtr != null && fastPtr.next != null){
+            fastPtr = fastPtr.next.next; // 2 steps
+            slowPtr = slowPtr.next; // 1 step
+
+            // if they meet
+            if ( fastPtr == slowPtr) {
+                return getStartingOfLoopedList(slowPtr);
+            }
+        }
+        return null;
+    }
+
+    private ListNode getStartingOfLoopedList(ListNode slowPtr) {
+        ListNode tmp = head;
+
+        while ( tmp != slowPtr){
+            tmp = tmp.next;
+            slowPtr = slowPtr.next;
+        }
+
+        return tmp;
+    }
+    
+
+    private SinglyLinkedList createLoopedList () {
+        SinglyLinkedList loopedList = new SinglyLinkedList();
+
+        // creating the list
+        loopedList.head = new ListNode(1); // creating the head
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
+        ListNode sixth = new ListNode(6);
+
+        // connecting the list
+        loopedList.head.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = sixth;
+        sixth.next = third;
+
+        return loopedList;
+    }
+
     public static void main(String args[]){
         // creating a list
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -191,6 +243,10 @@ public class SinglyLinkedList {
         sll.unshift(7);
         sll.insert(3, 12);
 
-        sll.print();
+        // created a looping linked list
+        SinglyLinkedList loopedList = sll.createLoopedList();
+        ListNode startPoint = loopedList.detectLoop();
+
+        System.out.println(startPoint.data);
     }
 }
