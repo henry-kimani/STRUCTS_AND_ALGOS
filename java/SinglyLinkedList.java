@@ -190,7 +190,9 @@ public class SinglyLinkedList {
 
             // if they meet
             if ( fastPtr == slowPtr) {
-                return getStartingOfLoopedList(slowPtr);
+                ListNode startPoint =  getStartingOfLoopedList(slowPtr);
+                removeLoop(slowPtr);
+                return startPoint;
             }
         }
         return null;
@@ -206,7 +208,17 @@ public class SinglyLinkedList {
 
         return tmp;
     }
-    
+
+    private void removeLoop(ListNode slowPtr) {
+        ListNode tmp = head; // start from the head
+        
+        // traverse till they share the same next node
+        while (tmp.next != slowPtr.next){
+            tmp = tmp.next;
+            slowPtr = slowPtr.next;
+        }
+        slowPtr.next = null;
+    }
 
     private SinglyLinkedList createLoopedList () {
         SinglyLinkedList loopedList = new SinglyLinkedList();
@@ -246,7 +258,6 @@ public class SinglyLinkedList {
         // created a looping linked list
         SinglyLinkedList loopedList = sll.createLoopedList();
         ListNode startPoint = loopedList.detectLoop();
-
-        System.out.println(startPoint.data);
+        loopedList.print();
     }
 }
